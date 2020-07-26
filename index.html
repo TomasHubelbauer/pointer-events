@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pointer Events</title>
+    <style>
+      body {
+        background: whitesmoke;
+        font: normal 10pt monospace;
+        white-space: pre;
+      }
+    </style>
+    <script>
+      window.addEventListener('load', () => {
+        document.documentElement.addEventListener('pointermove', event => {
+          let report = '';
+          for (const key in event) {
+            const value = event[key];
+            const type = typeof value;
+            if (type === 'function' || value instanceof HTMLElement || MouseEvent[key] !== undefined) {
+              continue;
+            }
+
+            report += `${key}: ${value}\n`;
+          }
+
+          document.body.textContent = report;
+        });
+      });
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
